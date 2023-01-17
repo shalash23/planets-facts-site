@@ -1,17 +1,14 @@
-import {
-  Container,
-  CssBaseline,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Container, CssBaseline, useMediaQuery } from "@mui/material";
+import PlanetPage from "./Page/PlanetPage";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import images from "../assets/index";
 import Background from "./Background";
 import NavBar from "./Components/NavBar";
 import PlanetContextProverider from "./Store/PlanetsContext";
-import AnimatedRoutes from "./AnimatedRoutes";
-import { BrowserRouter as Router } from "react-router-dom";
+import { useRoutes, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import React from "react";
 export default function App() {
+  const location = useLocation();
   const theme = createTheme({
     palette: {
       mode: "dark",
@@ -21,6 +18,16 @@ export default function App() {
     },
   });
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
+  const element = useRoutes([
+    {
+      path: "/",
+      element: <PlanetPage location="Earth" />,
+    },
+    {
+      path: "/:planet",
+      element: <PlanetPage location={location} />,
+    },
+  ]);
 
   return (
     <div className="app">
@@ -35,10 +42,10 @@ export default function App() {
             disableGutters
           >
             <Background />
-            <Router>
-              <NavBar />
-              <AnimatedRoutes />
-            </Router>
+            <NavBar />
+            <AnimatePresence mode="wait">
+              {React.cloneElement(element, { key: location.pathname })}
+            </AnimatePresence>
           </Container>
         </PlanetContextProverider>
       </ThemeProvider>

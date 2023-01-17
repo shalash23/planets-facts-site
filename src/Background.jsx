@@ -1,6 +1,7 @@
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import { useCallback } from "react";
+import "./particles.css";
 
 export default function Background() {
   const particlesInit = useCallback(async (engine) => {
@@ -9,6 +10,7 @@ export default function Background() {
 
   const options = {
     particles: {
+      retina_detect: true,
       number: {
         value: 488,
         density: {
@@ -97,5 +99,7 @@ export default function Background() {
       },
     },
   };
-  return <Particles options={options} init={particlesInit} />;
+  return (
+    <Particles options={options} init={particlesInit} className="particles" />
+  );
 }
