@@ -5,9 +5,10 @@ import {
   Link,
   Stack,
   Button,
+  Paper,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { Fragment, useContext, useState, useEffect } from "react";
+import { Fragment, useContext, useState } from "react";
 import images from "../../assets/index";
 import { planetContext } from "../Store/PlanetsContext";
 
@@ -62,6 +63,8 @@ export default function PlanetPage({ location }) {
               alt={`Planet ${locationObj} Picture`}
               style={{
                 width: "100%",
+                maxWidth: "407px",
+                aspectRatio: "1/1",
                 objectFit: "fill",
               }}
               initial={{
@@ -82,13 +85,13 @@ export default function PlanetPage({ location }) {
           <Grid item xs={5}>
             <Typography
               component={motion.h1}
-              variant="h1"
+              variant="h2"
               initial={{ opacity: 0, y: -100 }}
               exit={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 type: "spring",
-                stifness: 30,
+                stiffness: 30,
               }}
               sx={{
                 mb: 3,
@@ -100,7 +103,7 @@ export default function PlanetPage({ location }) {
             <Typography
               key={planetProp[planetStructure].content}
               component={motion.p}
-              variant="h6"
+              variant="body1"
               sx={{ mb: 2 }}
               initial={{ scale: 0, x: -200 }}
               animate={{ scale: 1, x: 0 }}
@@ -199,7 +202,134 @@ export default function PlanetPage({ location }) {
               </Button>
             </Stack>
           </Grid>
-          <Grid item xs={3}></Grid>
+          <Grid item xs={12} sx={{ mt: 5, width: "100%" }}>
+            <Grid
+              container
+              xs={12}
+              component={motion.div}
+              spacing={4}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ y: 200 }}
+            >
+              <Grid item xs={3}>
+                <Paper
+                  variant="outlined"
+                  square
+                  sx={{
+                    backgroundColor: "transparent",
+                    border: "1px solid white",
+                    display: "flex",
+                    width: "100%",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    flexDirection: "column",
+                    pt: 1,
+                  }}
+                >
+                  <Typography
+                    component="p"
+                    variant="subtitle2"
+                    sx={{
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Rotation Time
+                  </Typography>
+                  <Typography component="p" variant="h4" sx={{ mt: 1 }}>
+                    {planetProp.rotation}
+                  </Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={3}>
+                <Paper
+                  variant="outlined"
+                  square
+                  sx={{
+                    backgroundColor: "transparent",
+                    border: "1px solid white",
+                    display: "flex",
+                    width: "100%",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    flexDirection: "column",
+                    pt: 1,
+                  }}
+                >
+                  <Typography
+                    component="p"
+                    variant="subtitle2"
+                    sx={{
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Revolution Time
+                  </Typography>
+                  <Typography component="p" variant="h4" sx={{ mt: 1 }}>
+                    {planetProp.revolution}
+                  </Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={3}>
+                <Paper
+                  variant="outlined"
+                  square
+                  sx={{
+                    backgroundColor: "transparent",
+                    border: "1px solid white",
+                    display: "flex",
+                    width: "100%",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    flexDirection: "column",
+                    pt: 1,
+                  }}
+                >
+                  <Typography
+                    component="p"
+                    variant="subtitle2"
+                    sx={{
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Radius
+                  </Typography>
+                  <Typography component="p" variant="h4" sx={{ mt: 1 }}>
+                    {planetProp.radius}
+                  </Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={3}>
+                <Paper
+                  variant="outlined"
+                  square
+                  sx={{
+                    backgroundColor: "transparent",
+                    border: "1px solid white",
+                    display: "flex",
+                    width: "100%",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    flexDirection: "column",
+                    pt: 1,
+                  }}
+                >
+                  <Typography
+                    component="p"
+                    variant="subtitle2"
+                    sx={{
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Average Temp
+                  </Typography>
+                  <Typography component="p" variant="h4" sx={{ mt: 1 }}>
+                    {planetProp.temperature}
+                  </Typography>
+                </Paper>
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
       </Container>
     </Fragment>
